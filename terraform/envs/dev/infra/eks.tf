@@ -26,6 +26,12 @@ module "eks" {
       min_size     = 2
       max_size     = 3
       desired_size = 2
+
+      ami_type = "AL2023_x86_64_STANDARD"
+
+      iam_role_additional_policies = {
+        AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+      }
     }
   }
 
