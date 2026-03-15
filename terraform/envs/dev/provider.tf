@@ -8,3 +8,8 @@ terraform {
     }
   }
 }
+
+provider "aws" {
+  profile = "devops"
+  region  = "ap-northeast-2"
+}
