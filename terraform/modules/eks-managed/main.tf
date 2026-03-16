@@ -5,6 +5,9 @@ module "eks" {
   name               = var.cluster_name
   kubernetes_version = var.kubernetes_version
 
+  # CloudWatch 로그 사용 안함 (Loki 등 외부 스택 사용 예정)
+  create_cloudwatch_log_group = false
+
   addons = {
     # Kubernetes 내부 DNS
     coredns = {
