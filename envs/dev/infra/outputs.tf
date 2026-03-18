@@ -9,3 +9,11 @@ output "cluster_endpoint" {
 output "cluster_certificate_authority_data" {
   value = module.eks.cluster_certificate_authority_data
 }
+
+output "backend_ecr_repository_url" {
+  value = module.ecr_backend.repository_url
+}
+
+output "frontend_ecr_repository_url" {
+  value = module.ecr_frontend.repository_url
+}
