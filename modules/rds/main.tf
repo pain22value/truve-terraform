@@ -58,8 +58,9 @@ module "rds" {
 
   multi_az                = var.multi_az
   backup_retention_period = var.backup_retention_period
-  deletion_protection     = var.deletion_protection
-  skip_final_snapshot     = var.skip_final_snapshot
+  deletion_protection     = var.deletion_protection # 삭제 보호 비활성화 (default false)
+  skip_final_snapshot     = var.skip_final_snapshot # destroy 시 final snapshot 없이 바로 삭제 (default true)
+
 
   create_db_subnet_group = true
   subnet_ids             = var.subnet_ids
