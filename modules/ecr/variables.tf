@@ -12,6 +12,11 @@ variable "scan_on_push" {
   default = true
 }
 
+variable "force_delete" {
+  type    = bool
+  default = false
+}
+
 variable "lifecycle_policy_json" {
   type    = string
   default = null

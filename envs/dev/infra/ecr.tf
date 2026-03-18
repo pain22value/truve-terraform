@@ -8,6 +8,7 @@ module "ecr_backend" {
 
   image_tag_mutability = "MUTABLE"
   scan_on_push         = true
+  force_delete         = true
 
   # 이미지 10개만 유지 + 7일 지난 태그 없는 이미지 삭제
   lifecycle_policy_json = jsonencode({
@@ -57,6 +58,7 @@ module "ecr_frontend" {
 
   image_tag_mutability = "MUTABLE"
   scan_on_push         = true
+  force_delete         = true
 
   # 이미지 10개만 유지 + 7일 지난 태그 없는 이미지 삭제
   lifecycle_policy_json = jsonencode({
