@@ -1,12 +1,9 @@
-module "ec2_ssm" {
-  source = "../../../modules/ec2-ssm"
+module "ops_ec2" {
+  source = "../../../modules/ops-ec2"
 
-  name   = "ops-ec2"
-  vpc_id = module.vpc.vpc_id
-
-  # 퍼블릭 서브넷 1개 선택
-  subnet_id = module.vpc.private_subnets[0]
-
+  name                        = "ops-ec2"
+  vpc_id                      = module.vpc.vpc_id
+  subnet_id                   = module.vpc.private_subnets[0] # 퍼블릭 서브넷 1개 선택
   instance_type               = "t3.micro"
   associate_public_ip_address = false
 
