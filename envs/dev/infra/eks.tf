@@ -1,7 +1,7 @@
 module "eks" {
   source = "../../../modules/eks-managed"
 
-  cluster_name       = "truve-dev-cluster"
+  cluster_name       = "truve-eks-dev"
   kubernetes_version = "1.34"
 
   # VPC 모듈 output 참조
