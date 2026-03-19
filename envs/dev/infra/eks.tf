@@ -18,16 +18,15 @@ module "eks" {
 
   # EKS Managed Node Group 설정
   node_groups = {
-    default = {
+    # 기본 노드 그룹
+    system = {
       ami_type       = "AL2023_x86_64_STANDARD"
-      instance_types = ["t3.medium"]
+      instance_types = ["t3.large"]
       capacity_type  = "ON_DEMAND"
 
       min_size     = 2
       max_size     = 3
       desired_size = 2
-
-      ami_type = "AL2023_x86_64_STANDARD"
 
       iam_role_additional_policies = {
         AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"

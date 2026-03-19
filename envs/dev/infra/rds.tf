@@ -5,7 +5,7 @@ module "rds" {
 
   db_name  = "truve-db"
   username = "admin"
-  password = "test@123"
+  password = "truve#12!@po"
 
   instance_class        = "db.t4g.micro"
   allocated_storage     = 20
