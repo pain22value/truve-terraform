@@ -1,8 +1,8 @@
 module "eks" {
   source = "../../../modules/eks-managed"
 
-  cluster_name       = "truve-eks-dev"
-  kubernetes_version = "1.34"
+  cluster_name    = "truve-eks-dev"
+  cluster_version = "1.34"
 
   # VPC 모듈 output 참조
   # module.vpc 값을 사용하므로 VPC가 먼저 생성된 뒤 EKS가 생성됨

@@ -7,12 +7,6 @@ module "rds" {
   username = "admin"
   password = "truve1234!"
 
-  instance_class        = "db.t4g.micro"
-  allocated_storage     = 20
-  max_allocated_storage = 100
-
-  engine_version       = "8.0"
-  family               = "mysql8.0"
   major_engine_version = "8.0"
 
   vpc_id     = module.vpc.vpc_id
