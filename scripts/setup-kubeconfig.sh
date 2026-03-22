@@ -2,7 +2,7 @@
 set -euo pipefail
 
 AWS_REGION="${AWS_REGION:-ap-northeast-2}"
-CLUSTER_NAME="${1:-dev-eks-v2}"
+CLUSTER_NAME="${1:-truve-eks-dev}"
 
 echo "Updating kubeconfig for cluster: ${CLUSTER_NAME}"
 aws eks update-kubeconfig \
