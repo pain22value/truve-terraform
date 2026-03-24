@@ -10,7 +10,7 @@ resource "kubernetes_namespace_v1" "argocd" {
 
 resource "helm_release" "argocd" {
   name             = "argocd"
-  namespace        = kubernetes_namespace.argocd.metadata[0].name
+  namespace        = kubernetes_namespace_v1.argocd.metadata[0].name
   repository       = "https://argoproj.github.io/argo-helm"
   chart            = "argo-cd"
   version          = "7.7.16"
@@ -56,5 +56,5 @@ resource "helm_release" "argocd" {
     })
   ]
 
-  depends_on = [kubernetes_namespace.argocd]
+  depends_on = [kubernetes_namespace_v1.argocd]
 }
