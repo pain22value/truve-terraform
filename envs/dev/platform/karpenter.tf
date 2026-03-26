@@ -311,11 +311,6 @@ resource "aws_iam_role_policy_attachment" "karpenter_controller" {
   policy_arn = aws_iam_policy.karpenter_controller.arn
 }
 
-resource "aws_iam_role_policy_attachment" "karpenter_controller" {
-  role       = aws_iam_role.karpenter_controller.name
-  policy_arn = aws_iam_policy.karpenter_controller.arn
-}
-
 ############################################
 # Pod Identity Association
 ############################################
