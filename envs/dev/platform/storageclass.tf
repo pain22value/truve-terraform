@@ -6,7 +6,7 @@ module "gp3_storage_class" {
   reclaim_policy         = "Delete"
   volume_binding_mode    = "WaitForFirstConsumer"
   allow_volume_expansion = true
-  is_default_class       = false # true
+  is_default_class       = true
 
   parameters = {
     type       = "gp3"
