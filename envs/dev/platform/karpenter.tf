@@ -257,6 +257,21 @@ data "aws_iam_policy_document" "karpenter_controller" {
     ]
   }
 
+  # 추가된 Instance Profile 관리 권한
+  statement {
+    sid    = "KarpenterInstanceProfileManagement"
+    effect = "Allow"
+    actions = [
+      "iam:CreateInstanceProfile",
+      "iam:TagInstanceProfile",
+      "iam:AddRoleToInstanceProfile",
+      "iam:RemoveRoleFromInstanceProfile",
+      "iam:DeleteInstanceProfile",
+      "iam:GetInstanceProfile"
+    ]
+    resources = ["*"]
+  }
+
   statement {
     sid    = "KarpenterDescribeCluster"
     effect = "Allow"
@@ -284,26 +299,9 @@ data "aws_iam_policy_document" "karpenter_controller" {
 }
 
 resource "aws_iam_policy" "karpenter_controller" {
-  name = "${local.karpenter_controller_role}-policy"
+  name   = "${local.karpenter_controller_role}-policy"
+  policy = data.aws_iam_policy_document.karpenter_controller.json
 
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Sid    = "KarpenterInstanceProfileManagement"
-        Effect = "Allow"
-        Action = [
-          "iam:CreateInstanceProfile",
-          "iam:TagInstanceProfile",
-          "iam:AddRoleToInstanceProfile",
-          "iam:RemoveRoleFromInstanceProfile",
-          "iam:DeleteInstanceProfile",
-          "iam:GetInstanceProfile"
-        ]
-        Resource = "*"
-      }
-    ]
-  })
 }
 
 resource "aws_iam_role_policy_attachment" "karpenter_controller" {
