@@ -10,23 +10,23 @@ module "ecr_backend" {
   scan_on_push         = true
   force_delete         = true
 
-  # 이미지 10개만 유지
-  lifecycle_policy_json = jsonencode({
-    rules = [
-      {
-        "rulePriority" : 1,
-        "description" : "Keep last 10 images",
-        "selection" : {
-          "tagStatus" : "any",
-          "countType" : "imageCountMoreThan",
-          "countNumber" : 10
-        },
-        "action" : {
-          "type" : "expire"
-        }
-      },
-    ]
-  })
+  # # 이미지 10개만 유지
+  # lifecycle_policy_json = jsonencode({
+  #   rules = [
+  #     {
+  #       "rulePriority" : 1,
+  #       "description" : "Keep last 10 images",
+  #       "selection" : {
+  #         "tagStatus" : "any",
+  #         "countType" : "imageCountMoreThan",
+  #         "countNumber" : 10
+  #       },
+  #       "action" : {
+  #         "type" : "expire"
+  #       }
+  #     },
+  #   ]
+  # })
 
   tags = {
     Project     = "truve"
@@ -47,23 +47,23 @@ module "ecr_frontend" {
   scan_on_push         = true
   force_delete         = true
 
-  # 이미지 10개만 유지
-  lifecycle_policy_json = jsonencode({
-    rules = [
-      {
-        "rulePriority" : 1,
-        "description" : "Keep last 10 images",
-        "selection" : {
-          "tagStatus" : "any",
-          "countType" : "imageCountMoreThan",
-          "countNumber" : 10
-        },
-        "action" : {
-          "type" : "expire"
-        }
-      }
-    ]
-  })
+  # # 이미지 10개만 유지
+  # lifecycle_policy_json = jsonencode({
+  #   rules = [
+  #     {
+  #       "rulePriority" : 1,
+  #       "description" : "Keep last 10 images",
+  #       "selection" : {
+  #         "tagStatus" : "any",
+  #         "countType" : "imageCountMoreThan",
+  #         "countNumber" : 10
+  #       },
+  #       "action" : {
+  #         "type" : "expire"
+  #       }
+  #     }
+  #   ]
+  # })
 
   tags = {
     Project     = "truve"
