@@ -338,6 +338,8 @@ resource "helm_release" "karpenter" {
 
   values = [
     yamlencode({
+      replicas = 1
+
       serviceAccount = {
         name = local.karpenter_service_account
       }
