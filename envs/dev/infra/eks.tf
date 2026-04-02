@@ -115,12 +115,12 @@ module "eks" {
 
     messaging = {
       ami_type       = "AL2023_ARM_64_STANDARD"
-      instance_types = ["m6g.large"]
-      capacity_type  = "ON_DEMAND"
+      instance_types = ["t4g.small"]
+      capacity_type  = "SPOT"
 
-      min_size     = 3
+      min_size     = 1
       max_size     = 3
-      desired_size = 3
+      desired_size = 2
 
       labels = {
         workload = "messaging"
