@@ -22,7 +22,6 @@ resource "helm_release" "argocd" {
 
   values = [
     yamlencode({
-      # 노드 라벨 키 system이 존재하는 노드에만 ArgoCD 컴포넌트를 스케줄링하도록 설정
       global = {
         affinity = {
           nodeAffinity = {
@@ -31,8 +30,9 @@ resource "helm_release" "argocd" {
                 {
                   matchExpressions = [
                     {
-                      key      = "system"
-                      operator = "Exists"
+                      key      = "workload"
+                      operator = "In"
+                      values   = ["system"]
                     }
                   ]
                 }
@@ -42,11 +42,14 @@ resource "helm_release" "argocd" {
         }
       }
 
-      #   configs = {
-      #     params = {
-      #       "server.insecure" = true # 초기 구축 단계에서 ALB/Ingress 붙이기 전에 포트포워드나 내부 접근으로 확인하기 편하다.
-      #     }
-      #   }
+      tolerations = [
+        {
+          key      = "workload"
+          operator = "Equal"
+          value    = "system"
+          effect   = "NoSchedule"
+        }
+      ]
 
       server = {
         service = {
