@@ -40,7 +40,7 @@ module "eks" {
       instance_types = ["t4g.large"]
       capacity_type  = "ON_DEMAND"
 
-      min_size     = 1
+      min_size     = 0
       max_size     = 2
       desired_size = 1
 
@@ -92,7 +92,7 @@ module "eks" {
       instance_types = ["t3.large"]
       capacity_type  = "ON_DEMAND"
 
-      min_size     = 1
+      min_size     = 0
       max_size     = 2
       desired_size = 1
 
@@ -118,9 +118,9 @@ module "eks" {
       instance_types = ["t4g.small"]
       capacity_type  = "SPOT"
 
-      min_size     = 1
+      min_size     = 0
       max_size     = 3
-      desired_size = 2
+      desired_size = 1
 
       labels = {
         workload = "messaging"
