@@ -23,33 +23,19 @@ resource "helm_release" "argocd" {
   values = [
     yamlencode({
       global = {
-        affinity = {
-          nodeAffinity = {
-            requiredDuringSchedulingIgnoredDuringExecution = {
-              nodeSelectorTerms = [
-                {
-                  matchExpressions = [
-                    {
-                      key      = "workload"
-                      operator = "In"
-                      values   = ["system"]
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+        nodeSelector = {
+          workload = "system"
         }
-      }
 
-      tolerations = [
-        {
-          key      = "workload"
-          operator = "Equal"
-          value    = "system"
-          effect   = "NoSchedule"
-        }
-      ]
+        tolerations = [
+          {
+            key      = "workload"
+            operator = "Equal"
+            value    = "system"
+            effect   = "NoSchedule"
+          }
+        ]
+      }
 
       server = {
         service = {
