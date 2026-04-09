@@ -42,7 +42,7 @@ module "eks" {
 
       min_size     = 0
       max_size     = 2
-      desired_size = 1
+      desired_size = 2
 
       labels = {
         workload = "system"
@@ -89,7 +89,7 @@ module "eks" {
 
     monitoring = {
       ami_type       = "AL2023_x86_64_STANDARD"
-      instance_types = ["t3a.medium"]
+      instance_types = ["t3a.large"]
       capacity_type  = "ON_DEMAND"
 
       min_size     = 0
@@ -120,7 +120,7 @@ module "eks" {
 
       min_size     = 0
       max_size     = 3
-      desired_size = 1
+      desired_size = 3
 
       labels = {
         workload = "messaging"
