@@ -115,7 +115,7 @@ module "eks" {
 
     messaging = {
       ami_type       = "AL2023_ARM_64_STANDARD"
-      instance_types = ["t4g.small"]
+      instance_types = ["t4g.medium"]
       capacity_type  = "SPOT"
 
       min_size     = 0
