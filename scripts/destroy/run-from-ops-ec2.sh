@@ -25,7 +25,14 @@ set -e
 if [ "${verify_status}" -eq 2 ]; then
   echo "PVC/PV 잔여물 발견 - PV finalizer 정리 진행"
   bash "${SCRIPT_DIR}/03-clean-finalizers.sh"
+  set +e
   bash "${SCRIPT_DIR}/04-verify-empty.sh" pre-terraform
+  verify_status=$?
+  set -e
+  if [ "${verify_status}" -ne 0 ]; then
+    echo "PV/PVC finalizer 정리 후에도 필수 리소스가 남아 있습니다." >&2
+    exit "${verify_status}"
+  fi
 elif [ "${verify_status}" -ne 0 ]; then
   echo "EKS destroy 전에 정리해야 할 필수 리소스가 남아 있습니다." >&2
   exit "${verify_status}"

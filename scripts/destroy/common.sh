@@ -147,6 +147,13 @@ list_pvs() {
       | .metadata.name'
 }
 
+list_pvc_names_in_namespace() {
+  local ns="$1"
+
+  kubectl get pvc -n "${ns}" -o json 2>/dev/null \
+    | jq -r '.items[]?.metadata.name'
+}
+
 list_karpenter_nodes() {
   kubectl get nodes -l karpenter.sh/nodepool -o name 2>/dev/null \
     | sed 's#^node/##'

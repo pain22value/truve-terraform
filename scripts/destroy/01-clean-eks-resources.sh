@@ -79,12 +79,20 @@ delete_loadbalancer_services() {
 
 delete_stateful_pvcs() {
   local ns
+  local pvc_name
 
   for ns in "${STATEFUL_NAMESPACES[@]}"; do
     if namespace_exists "${ns}"; then
       log_step "4" "PVC 삭제: ${ns}"
       kubectl get pvc -n "${ns}" || true
-      kubectl delete pvc --all -n "${ns}" --ignore-not-found=true --timeout=300s || true
+      while IFS= read -r pvc_name; do
+        [ -n "${pvc_name}" ] || continue
+        kubectl delete pvc "${pvc_name}" \
+          -n "${ns}" \
+          --ignore-not-found=true \
+          --wait=false \
+          --timeout=5s || true
+      done < <(list_pvc_names_in_namespace "${ns}")
     fi
   done
 }
